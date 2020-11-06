@@ -1,3 +1,7 @@
+Firebase login: 
+user: test@test.com
+pass: 123456
+
 # nasa-demo
 
 ## Project setup
