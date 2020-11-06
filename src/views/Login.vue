@@ -25,7 +25,7 @@
         <v-divider></v-divider>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn color="info" @click="login">Login</v-btn>
+          <v-btn color="info" @click.prevent="login">Login</v-btn>
         </v-card-actions>
       </v-card>
     </v-img>
@@ -33,6 +33,8 @@
 </template>
 
 <script>
+import { mapActions, mapState} from 'vuex'
+import firebase from 'firebase'
 export default {
   data() {
     return {
@@ -41,5 +43,26 @@ export default {
       showPassword: false,
     };
   },
+  computed: {
+    ...mapState(['apod'])
+  },
+  methods: {
+    ...mapActions(['getApod', 'updateCurrentUser']),
+
+    login() {
+      firebase.auth().signInWithEmailAndPassword(this.user, this.password)
+      .then(() => {
+        this.updateCurrentUser(firebase.auth().currentUser)
+        this.$router.push("/apod");
+      })
+      .catch(() => {
+        alert('Ingresa Usuario o Contraseña correctos')
+      })
+    }
+  },
+
+  created() {
+    this.getApod()
+  }
 };
 </script>
