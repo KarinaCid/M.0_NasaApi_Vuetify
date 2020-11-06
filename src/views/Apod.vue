@@ -1,7 +1,11 @@
 <template>
   <div class="home">
-    <v-row justify="center">
-    <v-date-picker @click:date="getApod" v-model="picker"></v-date-picker>
+    <v-row>
+      <v-col md="4">
+        <v-app>
+          <v-date-picker @click:date="getApod" v-model="picker"></v-date-picker>
+        </v-app>
+      </v-col>
     </v-row>
   </div>
 </template>
@@ -13,8 +17,8 @@ export default {
   name: "Home",
   data() {
     return {
-      picker: ''
-    }
+      picker: new Date().toISOString().substr(0, 10),
+    };
   },
   methods: {
     getApod() {
