@@ -52,5 +52,8 @@ export default {
   computed: {
     ...mapState(['currentUser'])
   },
+  created() {
+    this.updateCurrentUser(firebase.auth().currentUser)
+  }
 }
 </script>

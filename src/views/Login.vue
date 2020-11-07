@@ -33,8 +33,8 @@
 </template>
 
 <script>
-import { mapActions, mapState} from 'vuex'
-import firebase from 'firebase'
+import { mapActions, mapState } from "vuex";
+import firebase from "firebase";
 export default {
   data() {
     return {
@@ -44,25 +44,27 @@ export default {
     };
   },
   computed: {
-    ...mapState(['apod'])
+    ...mapState(["apod"]),
   },
   methods: {
-    ...mapActions(['getApod', 'updateCurrentUser']),
+    ...mapActions(["getApod", "updateCurrentUser"]),
 
     login() {
-      firebase.auth().signInWithEmailAndPassword(this.user, this.password)
-      .then(() => {
-        this.updateCurrentUser(firebase.auth().currentUser)
-        this.$router.push("/apod");
-      })
-      .catch(() => {
-        alert('Ingresa Usuario o Contraseña correctos')
-      })
-    }
+      firebase
+        .auth()
+        .signInWithEmailAndPassword(this.user, this.password)
+        .then(() => {
+          this.updateCurrentUser(firebase.auth().currentUser);
+          this.$router.push("/apod");
+        })
+        .catch(() => {
+          alert("Ingresa Usuario o Contraseña correctos");
+        });
+    },
   },
 
   created() {
-    this.getApod()
-  }
+    this.getApod();
+  },
 };
 </script>

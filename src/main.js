@@ -10,7 +10,7 @@ firebase.initializeApp(firebaseConfig)
 
 Vue.config.productionTip = false
 
-let app = '';
+let app = null;
 
 firebase.auth().onAuthStateChanged(() => {
   if(!app){
